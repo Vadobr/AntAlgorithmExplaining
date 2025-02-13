@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DataGeneratorSmartClass</class>
+ <widget class="QMainWindow" name="DataGeneratorSmartClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>540</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>DataGeneratorSmart</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../AntsSettingsVisual/Icon.ico</normaloff>../AntsSettingsVisual/Icon.ico</iconset>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>600</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuA">
+    <property name="title">
+     <string>Заповнити</string>
+    </property>
+    <addaction name="All0action"/>
+    <addaction name="All1action"/>
+    <addaction name="AllRandomaction"/>
+    <addaction name="AddRandomaction"/>
+    <addaction name="RandomSettingsaction"/>
+   </widget>
+   <widget class="QMenu" name="menuB">
+    <property name="title">
+     <string>Розмір</string>
+    </property>
+    <addaction name="Plus1action"/>
+    <addaction name="Plus10action"/>
+    <addaction name="Munus1action"/>
+    <addaction name="Minus10action"/>
+    <addaction name="action"/>
+   </widget>
+   <addaction name="menuA"/>
+   <addaction name="menuB"/>
+  </widget>
+  <action name="All0action">
+   <property name="text">
+    <string>Все 0</string>
+   </property>
+  </action>
+  <action name="All1action">
+   <property name="text">
+    <string>Все 1</string>
+   </property>
+  </action>
+  <action name="AllRandomaction">
+   <property name="text">
+    <string>Повний рандом</string>
+   </property>
+  </action>
+  <action name="AddRandomaction">
+   <property name="text">
+    <string>Корекція рандомом</string>
+   </property>
+  </action>
+  <action name="RandomSettingsaction">
+   <property name="text">
+    <string>Налаштування рандому</string>
+   </property>
+  </action>
+  <action name="Plus1action">
+   <property name="text">
+    <string>+1</string>
+   </property>
+  </action>
+  <action name="Plus10action">
+   <property name="text">
+    <string>+10</string>
+   </property>
+  </action>
+  <action name="Munus1action">
+   <property name="text">
+    <string>-1</string>
+   </property>
+  </action>
+  <action name="Minus10action">
+   <property name="text">
+    <string>-10</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="text">
+    <string>Кастом</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="DataGeneratorSmart.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>menuBar</sender>
+   <signal>triggered(QAction*)</signal>
+   <receiver>DataGeneratorSmartClass</receiver>
+   <slot>onMenuFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>299</x>
+     <y>10</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>125</x>
+     <y>182</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action</sender>
+   <signal>triggered()</signal>
+   <receiver>DataGeneratorSmartClass</receiver>
+   <slot>onMenuFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>269</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>onMenuFile()</slot>
+  <slot>onCustomResize()</slot>
+ </slots>
+</ui>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SizeChangeForm</class>
+ <widget class="QWidget" name="SizeChangeForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>261</width>
+    <height>98</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Розмір</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../AntsSettingsVisual/Icon.ico</normaloff>../AntsSettingsVisual/Icon.ico</iconset>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0">
+    <widget class="QPushButton" name="OK_Button">
+     <property name="text">
+      <string>OK</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="Exit_Button">
+     <property name="text">
+      <string>Exit</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QSpinBox" name="spinBox"/>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>OK_Button</sender>
+   <signal>clicked()</signal>
+   <receiver>SizeChangeForm</receiver>
+   <slot>onOK()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>81</x>
+     <y>71</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>112</x>
+     <y>91</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Exit_Button</sender>
+   <signal>clicked()</signal>
+   <receiver>SizeChangeForm</receiver>
+   <slot>onCancel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>177</x>
+     <y>63</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>217</x>
+     <y>87</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>onOK()</slot>
+  <slot>onCancel()</slot>
+ </slots>
+</ui>

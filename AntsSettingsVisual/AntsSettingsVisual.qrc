@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/AntsSettingsVisual">
+        <file>arrow-down.png</file>
+        <file>arrow-up.png</file>
+        <file>decrease.png</file>
+        <file>increase.png</file>
+        <file>Icon.ico</file>
+    </qresource>
+</RCC>
