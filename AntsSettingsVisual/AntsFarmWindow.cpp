@@ -1,3 +1,4 @@
+#include "PCH.h"
 #include "AntsFarmWindow.h"
 
 AntsFarmWindow::AntsFarmWindow()
@@ -174,6 +175,19 @@ void AntsFarmWindow::paintEvent(QPaintEvent*)
 		painter.setRenderHint(QPainter::Antialiasing);
 		painter.setBrush(Qt::NoBrush);
 
+		double maxPheromon = 0;
+
+		for (int i(0); i < outputCpy.pheromons.size(); i++)
+		{
+			for (int j(0); j < outputCpy.pheromons.size(); j++)
+			{
+				if (outputCpy.pheromons[i][j] > maxPheromon)
+				{
+					maxPheromon = outputCpy.pheromons[i][j];
+				}
+			}
+		}
+
 		for (int i(0); i < points.size(); i++)
 		{
 			for (int j(0); j < points.size(); j++)
@@ -184,7 +198,11 @@ void AntsFarmWindow::paintEvent(QPaintEvent*)
 				{
 					QPen pen;
 
-					pen.setColor(QColor(255, 255, 255, outputCpy.pheromons[i][j] * 255));
+					double da = outputCpy.pheromons[i][j] / maxPheromon;
+
+					int alphaChanel = da > 1. ? 255 : da * 255;
+
+					pen.setColor(QColor(255, 255, 255, alphaChanel));
 
 					pen.setWidth(2);
 

@@ -1,3 +1,4 @@
+#include "PCH.h"
 #include "AntsSettingsVisual.h"
 
 AntsSettingsVisual::AntsSettingsVisual(QWidget *parent)

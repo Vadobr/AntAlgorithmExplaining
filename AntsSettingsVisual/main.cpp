@@ -1,3 +1,4 @@
+#include "PCH.h"
 #include "AntsSettingsVisual.h"
 #include <QtWidgets/QApplication>
 #include "AlgorythmsEntry.h"

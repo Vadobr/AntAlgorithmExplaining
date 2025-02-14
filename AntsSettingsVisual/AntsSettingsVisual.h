@@ -1,11 +1,6 @@
 #pragma once
 
-#include <QtWidgets/QMainWindow>
-#include <qfile.h>
-#include <qdir.h>
-#include <qdialog.h>
-#include <qfiledialog.h>
-#include <qfileinfo.h>
+#include "PCHNames.h"
 
 #include "ui_AntsSettingsVisual.h"
 #include "AntsFarmWindow.h"

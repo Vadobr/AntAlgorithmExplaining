@@ -1,10 +1,7 @@
 #pragma once
-#include <qwidget.h>
-#include <qtimer.h>
-#include <qpainter.h>
+#include "PCHNames.h"
 
 #include "ui_AntsFarm.h"
-
 #include "AlgorythmsEntry.h"
 
 class AntsFarmWindow :

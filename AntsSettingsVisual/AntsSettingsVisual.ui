@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>667</width>
+    <width>680</width>
     <height>479</height>
    </rect>
   </property>
@@ -178,7 +178,7 @@ QWidget[highlighted=&quot;true&quot;] {
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>298</width>
+          <width>410</width>
           <height>248</height>
          </rect>
         </property>
@@ -507,8 +507,11 @@ QDoubleSpinBox::editor {
 }
 </string>
               </property>
+              <property name="decimals">
+               <number>5</number>
+              </property>
               <property name="singleStep">
-               <double>0.100000000000000</double>
+               <double>0.010000000000000</double>
               </property>
               <property name="value">
                <double>1.000000000000000</double>
@@ -569,13 +572,13 @@ QSpinBox::editor {
                <number>1</number>
               </property>
               <property name="maximum">
-               <number>1000000</number>
+               <number>1000000000</number>
               </property>
               <property name="singleStep">
-               <number>10</number>
+               <number>500</number>
               </property>
               <property name="value">
-               <number>90</number>
+               <number>1000</number>
               </property>
              </widget>
             </item>
@@ -693,8 +696,14 @@ QSpinBox::editor {
 }
 </string>
               </property>
+              <property name="maximum">
+               <number>1000000000</number>
+              </property>
+              <property name="singleStep">
+               <number>50</number>
+              </property>
               <property name="value">
-               <number>9</number>
+               <number>100</number>
               </property>
              </widget>
             </item>
@@ -764,8 +773,11 @@ QDoubleSpinBox::editor {
 }
 </string>
               </property>
+              <property name="decimals">
+               <number>5</number>
+              </property>
               <property name="singleStep">
-               <double>0.100000000000000</double>
+               <double>0.010000000000000</double>
               </property>
               <property name="value">
                <double>0.800000000000000</double>
@@ -963,6 +975,9 @@ QSpinBox::editor {
               <property name="minimum">
                <number>1</number>
               </property>
+              <property name="maximum">
+               <number>10000</number>
+              </property>
               <property name="value">
                <number>1</number>
               </property>
@@ -1156,7 +1171,7 @@ QWidget[highlighted=&quot;true&quot;] {
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>659</width>
+          <width>672</width>
           <height>93</height>
          </rect>
         </property>
@@ -1455,8 +1470,8 @@ QWidget[highlighted=&quot;true&quot;] {
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>349</width>
-          <height>248</height>
+          <width>331</width>
+          <height>231</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout_2">

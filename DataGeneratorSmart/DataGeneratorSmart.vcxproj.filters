@@ -24,6 +24,9 @@
     <Filter Include="Import">
       <UniqueIdentifier>{553aa41a-c465-4b7e-8623-61fc87edf2fc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PCH">
+      <UniqueIdentifier>{1dbcec80-2205-42aa-8ec7-6831785279a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="DataGeneratorSmart.qrc">
@@ -85,6 +88,9 @@
     <ClCompile Include="FileThatInsteadAPI.cpp">
       <Filter>Import</Filter>
     </ClCompile>
+    <ClCompile Include="PCH.cpp">
+      <Filter>PCH</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="AdvancedCell.h">
@@ -130,6 +136,12 @@
     </ClInclude>
     <ClInclude Include="FileThatInsteadAPI.h">
       <Filter>Import</Filter>
+    </ClInclude>
+    <ClInclude Include="PCH.h">
+      <Filter>PCH</Filter>
+    </ClInclude>
+    <ClInclude Include="PCHNames.h">
+      <Filter>PCH</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

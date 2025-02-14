@@ -279,9 +279,7 @@ void DataGeneratorSmart::onTimeout()
 
     if (hFile == INVALID_HANDLE_VALUE) {
         
-        int a = 4;
-        a += 5;
-        a++;
+        return; // then ÿ ץח רמ נמבטעü
 
     }
 

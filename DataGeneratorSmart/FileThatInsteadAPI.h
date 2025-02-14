@@ -1,4 +1,4 @@
 #pragma once
-#include <qstring.h>
+#include "PCHNames.h"
 
 extern const QString fileInsteadAPI;

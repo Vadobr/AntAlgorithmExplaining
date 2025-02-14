@@ -96,6 +96,7 @@
     <ClCompile Include="BeginProbabilityBar.cpp" />
     <ClCompile Include="ChangeSizeDilog.cpp" />
     <ClCompile Include="FileThatInsteadAPI.cpp" />
+    <ClCompile Include="PCH.cpp" />
     <ClCompile Include="RandomSettingsDialoh.cpp" />
     <ClCompile Include="SmartCellClass.cpp" />
     <ClCompile Include="SmartMatrixWidgetClass.cpp" />
@@ -128,6 +129,8 @@
     <ClInclude Include="ChangeSizeDilog.h" />
     <ClInclude Include="FileThatInsteadAPI.h" />
     <ClInclude Include="GridMovementer.h" />
+    <ClInclude Include="PCH.h" />
+    <ClInclude Include="PCHNames.h" />
     <ClInclude Include="RandomSettingsDialoh.h" />
     <ClInclude Include="TransitionsMatrix.h" />
     <QtMoc Include="SmartMatrixWidgetClass.h" />

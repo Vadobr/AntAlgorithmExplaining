@@ -1,3 +1,4 @@
+#include "PCH.h"
 #include "AlgorythmsEntry.h"
 
 AlgorythmSettings currentSettings;
@@ -15,33 +16,6 @@ void ProcessDataSingleTime(OutputData* data, const int& N)
 	InputData inputCpy = *input;
 
 	AlgorythmSettings currentSettingsCpy = currentSettings;
-
-	/*
-	{
-		data->bestWayLength = 3.333;
-
-		data->bestWay.clear();
-
-		data->bestWay.push_back(1);
-		data->bestWay.push_back(2);
-		data->bestWay.push_back(3);
-
-
-		int j;
-		for (int i(0); i < N; i++)
-		{
-			for (j = 0; j < i; j++)
-			{
-				data->pheromons[i][j] = inputCpy.model[i][j];
-			}
-			for (j = i + 1; j < N; j++)
-			{
-				data->pheromons[i][j] = inputCpy.model[i][j];
-			}
-		}
-
-	}
-	*/
 
 	std::vector<std::vector<double>> wishToGoIn(N, std::vector<double>(N, 0));
 
@@ -65,8 +39,6 @@ void ProcessDataSingleTime(OutputData* data, const int& N)
 			wishToRow[i] += wishToGoIn[i][j];
 		}
 	}
-
-	currentSettingsCpy.MaxTransitionsNumber;
 
 	std::vector<std::vector<int>> antWay(currentSettingsCpy.AntsNumber);
 	std::vector<double> antWayLength(currentSettingsCpy.AntsNumber, 1);
