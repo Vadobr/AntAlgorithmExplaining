@@ -66,6 +66,9 @@
     <ClCompile Include="PCH.cpp">
       <Filter>PCH</Filter>
     </ClCompile>
+    <ClCompile Include="Evolution.cpp">
+      <Filter>Algos</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="AntsFarm.ui">

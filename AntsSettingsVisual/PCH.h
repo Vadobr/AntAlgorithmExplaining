@@ -11,3 +11,4 @@
 #include <qdialog.h>
 #include <qfiledialog.h>
 #include <qfileinfo.h>
+#include <functional>

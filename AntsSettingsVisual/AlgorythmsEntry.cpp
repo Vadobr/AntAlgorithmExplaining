@@ -7,8 +7,9 @@ InputData* input;
 
 OutputData* output;
 
-std::thread *DataReader;
-std::thread *DataProcessor;
+std::thread* DataReader;
+std::thread* DataProcessor;;
+std::thread* Evolutioneer;
 
 void AlgorythmsEntry()
 {
@@ -19,6 +20,7 @@ void AlgorythmsEntry()
 
 	DataReader = new std::thread(GetDataEntry);
 	DataProcessor = new std::thread(ProcessDataEntry);
+	Evolutioneer = new std::thread(EvolutionEntry);
 
 }
 
@@ -28,7 +30,9 @@ void AlgotythmsJoin()
 
 	DataReader->join();
 	DataProcessor->join();
+	Evolutioneer->join();
 
 	delete DataReader;
 	delete DataProcessor;
+	delete Evolutioneer;
 }

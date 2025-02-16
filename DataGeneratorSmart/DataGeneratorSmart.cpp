@@ -275,12 +275,21 @@ void DataGeneratorSmart::onTimeout()
 {
     ViewToModel();
 
-    HANDLE hFile = CreateFile(fileInsteadAPI.toStdWString().c_str(), GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    HANDLE hFile;
 
-    if (hFile == INVALID_HANDLE_VALUE) {
-        
-        return; // then ÿ ץח רמ נמבטעü
+    int sprob = 200;
 
+    do {
+
+        hFile = CreateFile(fileInsteadAPI.toStdWString().c_str(), GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    
+        sprob--;
+
+    } while (hFile == INVALID_HANDLE_VALUE || sprob > 0);
+
+    if (hFile == INVALID_HANDLE_VALUE)
+    {
+        return;
     }
 
     {

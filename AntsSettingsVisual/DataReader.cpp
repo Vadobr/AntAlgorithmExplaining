@@ -84,5 +84,6 @@ void GetDataEntry()
         background = front;
 
         front = input;
+
 	}
 }

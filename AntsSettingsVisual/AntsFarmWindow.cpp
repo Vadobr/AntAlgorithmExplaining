@@ -33,6 +33,8 @@ void AntsFarmWindow::paintEvent(QPaintEvent*)
 
 			painter.drawRect(rectangle);
 		}
+
+		return;
 	}
 
 	OutputData outputCpy = *output;
@@ -327,10 +329,11 @@ void AntsFarmWindow::paintEvent(QPaintEvent*)
 					QPointF arrowP1 = end - QPointF(arrowSize * std::cos(angle - M_PI / 6), arrowSize * std::sin(angle - M_PI / 6));
 					QPointF arrowP2 = end - QPointF(arrowSize * std::cos(angle + M_PI / 6), arrowSize * std::sin(angle + M_PI / 6));
 
-					painter.setPen(quarterRedPen);
+					// ÷е стр≥лки
+					//painter.setPen(quarterRedPen);
 
-					painter.drawLine(end, arrowP1);
-					painter.drawLine(end, arrowP2);
+					//painter.drawLine(end, arrowP1);
+					//painter.drawLine(end, arrowP2);
 
 				}
 
@@ -357,10 +360,11 @@ void AntsFarmWindow::paintEvent(QPaintEvent*)
 				QPointF arrowP1 = end - QPointF(arrowSize * std::cos(angle - M_PI / 6), arrowSize * std::sin(angle - M_PI / 6));
 				QPointF arrowP2 = end - QPointF(arrowSize * std::cos(angle + M_PI / 6), arrowSize * std::sin(angle + M_PI / 6));
 
-				painter.setPen(quarterRedPen);
+				// ÷е стр≥лки
+				//painter.setPen(quarterRedPen);
 
-				painter.drawLine(end, arrowP1);
-				painter.drawLine(end, arrowP2);
+				//painter.drawLine(end, arrowP1);
+				//painter.drawLine(end, arrowP2);
 
 			}
 		}

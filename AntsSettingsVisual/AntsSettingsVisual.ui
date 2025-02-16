@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>680</width>
-    <height>479</height>
+    <width>707</width>
+    <height>578</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -178,8 +178,8 @@ QWidget[highlighted=&quot;true&quot;] {
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>410</width>
-          <height>248</height>
+          <width>338</width>
+          <height>344</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout">
@@ -210,8 +210,8 @@ QWidget[highlighted=&quot;true&quot;] {
             <string notr="true">background-color: #ffffc8;</string>
            </property>
            <layout class="QGridLayout" name="gridLayout_5">
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_7">
+            <item row="13" column="0">
+             <widget class="QLabel" name="label_14">
               <property name="minimumSize">
                <size>
                 <width>50</width>
@@ -235,15 +235,15 @@ QWidget[highlighted=&quot;true&quot;] {
                <string notr="true">color: black</string>
               </property>
               <property name="text">
-               <string>Вплив жадібности</string>
+               <string>Кількість потоків</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
-             <widget class="QDoubleSpinBox" name="lengthEffectSB">
+            <item row="7" column="1">
+             <widget class="QDoubleSpinBox" name="ScoutsRandomnessSB">
               <property name="minimumSize">
                <size>
                 <width>50</width>
@@ -315,65 +315,7 @@ QDoubleSpinBox::editor {
                <double>0.500000000000000</double>
               </property>
               <property name="value">
-               <double>1.000000000000000</double>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="1">
-             <widget class="QSpinBox" name="MaxTransitionsNumberSB">
-              <property name="font">
-               <font>
-                <family>Arial Black</family>
-                <pointsize>-1</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QSpinBox {
-	border: 1px solid #d5d5d5; 
-    background-color: #f5f5f5;        
-	border-radius: 4px;        
-	selection-background-color: #00000000;
-	selection-color: #000088;
-	qproperty-alignment: 'AlignCenter';
-	color: black;
-}
-QSpinBox::down-button {
-  border-radius: 4px;
-  width: 20px;               
-  height: 13px;               
-  image: url(:/AntsSettingsVisual/decrease.png);
-}
-QSpinBox::up-button {
-  border-radius: 4px;
-  width: 20px;               
-  height: 13px;               
-  image: url(:/AntsSettingsVisual/increase.png);
-}
-QSpinBox::up-button:pressed, QSpinBox::down-button:pressed {	
-	border-radius: 4px;
-    background-color: #d5d5d5;       
-    width: 20px;              
-    height: 13px;               
-}
-QSpinBox::up-button { 
-	subcontrol-origin: border; 
-	subcontrol-position: right;
-}
-QSpinBox::down-button { 
-	subcontrol-origin: border; 
-	subcontrol-position: left; 
-}
-QSpinBox::editor {
-    alignment: AlignCenter; 
-}
-</string>
-              </property>
-              <property name="minimum">
-               <number>3</number>
-              </property>
-              <property name="value">
-               <number>5</number>
+               <double>2.000000000000000</double>
               </property>
              </widget>
             </item>
@@ -403,38 +345,6 @@ QSpinBox::editor {
               </property>
               <property name="text">
                <string>Вплив феромонів</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="0">
-             <widget class="QLabel" name="label_13">
-              <property name="minimumSize">
-               <size>
-                <width>50</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>200</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>-1</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">color: black</string>
-              </property>
-              <property name="text">
-               <string>Розвідників у колонії</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -518,71 +428,39 @@ QDoubleSpinBox::editor {
               </property>
              </widget>
             </item>
-            <item row="5" column="1">
-             <widget class="QSpinBox" name="AntsNumberSB">
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_10">
+              <property name="minimumSize">
+               <size>
+                <width>50</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>16777215</height>
+               </size>
+              </property>
               <property name="font">
                <font>
-                <family>Arial Black</family>
+                <family>Arial</family>
                 <pointsize>-1</pointsize>
                 <bold>true</bold>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">QSpinBox {
-	border: 1px solid #d5d5d5; 
-    background-color: #f5f5f5;        
-	border-radius: 4px;        
-	selection-background-color: #00000000;
-	selection-color: #000088;
-	qproperty-alignment: 'AlignCenter';
-	color: black;
-}
-QSpinBox::down-button {
-  border-radius: 4px;
-  width: 20px;               
-  height: 13px;               
-  image: url(:/AntsSettingsVisual/decrease.png);
-}
-QSpinBox::up-button {
-  border-radius: 4px;
-  width: 20px;               
-  height: 13px;               
-  image: url(:/AntsSettingsVisual/increase.png);
-}
-QSpinBox::up-button:pressed, QSpinBox::down-button:pressed {	
-	border-radius: 4px;
-    background-color: #d5d5d5;       
-    width: 20px;              
-    height: 13px;               
-}
-QSpinBox::up-button { 
-	subcontrol-origin: border; 
-	subcontrol-position: right;
-}
-QSpinBox::down-button { 
-	subcontrol-origin: border; 
-	subcontrol-position: left; 
-}
-QSpinBox::editor {
-    alignment: AlignCenter; 
-}
-</string>
+               <string notr="true">color: black</string>
               </property>
-              <property name="minimum">
-               <number>1</number>
+              <property name="text">
+               <string>Залишати феромонів</string>
               </property>
-              <property name="maximum">
-               <number>1000000000</number>
-              </property>
-              <property name="singleStep">
-               <number>500</number>
-              </property>
-              <property name="value">
-               <number>1000</number>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
               </property>
              </widget>
             </item>
-            <item row="4" column="0">
+            <item row="10" column="0">
              <widget class="QLabel" name="label_11">
               <property name="minimumSize">
                <size>
@@ -608,38 +486,6 @@ QSpinBox::editor {
               </property>
               <property name="text">
                <string>Макс. переходів</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0">
-             <widget class="QLabel" name="label_12">
-              <property name="minimumSize">
-               <size>
-                <width>50</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>200</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>-1</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">color: black</string>
-              </property>
-              <property name="text">
-               <string>Мурах в колонії</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -704,6 +550,468 @@ QSpinBox::editor {
               </property>
               <property name="value">
                <number>100</number>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="1">
+             <widget class="QSpinBox" name="GenerationsPopulationSB">
+              <property name="font">
+               <font>
+                <family>Arial Black</family>
+                <pointsize>-1</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QSpinBox {
+	border: 1px solid #d5d5d5; 
+    background-color: #f5f5f5;        
+	border-radius: 4px;        
+	selection-background-color: #00000000;
+	selection-color: #000088;
+	qproperty-alignment: 'AlignCenter';
+	color: black;
+}
+QSpinBox::down-button {
+  border-radius: 4px;
+  width: 20px;               
+  height: 13px;               
+  image: url(:/AntsSettingsVisual/decrease.png);
+}
+QSpinBox::up-button {
+  border-radius: 4px;
+  width: 20px;               
+  height: 13px;               
+  image: url(:/AntsSettingsVisual/increase.png);
+}
+QSpinBox::up-button:pressed, QSpinBox::down-button:pressed {	
+	border-radius: 4px;
+    background-color: #d5d5d5;       
+    width: 20px;              
+    height: 13px;               
+}
+QSpinBox::up-button { 
+	subcontrol-origin: border; 
+	subcontrol-position: right;
+}
+QSpinBox::down-button { 
+	subcontrol-origin: border; 
+	subcontrol-position: left; 
+}
+QSpinBox::editor {
+    alignment: AlignCenter; 
+}
+</string>
+              </property>
+              <property name="minimum">
+               <number>0</number>
+              </property>
+              <property name="maximum">
+               <number>1000000000</number>
+              </property>
+              <property name="singleStep">
+               <number>1</number>
+              </property>
+              <property name="value">
+               <number>0</number>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="0">
+             <widget class="QLabel" name="label_13">
+              <property name="minimumSize">
+               <size>
+                <width>50</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>-1</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: black</string>
+              </property>
+              <property name="text">
+               <string>Розвідників у колонії</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_9">
+              <property name="minimumSize">
+               <size>
+                <width>50</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>-1</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: black</string>
+              </property>
+              <property name="text">
+               <string>Коефіцієнт випаровування</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="label_12">
+              <property name="minimumSize">
+               <size>
+                <width>50</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>-1</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: black</string>
+              </property>
+              <property name="text">
+               <string>Мурах в колонії</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="0">
+             <widget class="QLabel" name="label_16">
+              <property name="minimumSize">
+               <size>
+                <width>50</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>-1</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: black</string>
+              </property>
+              <property name="text">
+               <string>Колоній в поколінні</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="0">
+             <widget class="QLabel" name="label_17">
+              <property name="minimumSize">
+               <size>
+                <width>50</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>-1</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: black</string>
+              </property>
+              <property name="text">
+               <string>Зухвалість розвідників</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="13" column="1">
+             <widget class="QSpinBox" name="ColoniesNumberSB">
+              <property name="font">
+               <font>
+                <family>Arial Black</family>
+                <pointsize>-1</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QSpinBox {
+	border: 1px solid #d5d5d5; 
+    background-color: #f5f5f5;        
+	border-radius: 4px;        
+	selection-background-color: #00000000;
+	selection-color: #000088;
+	qproperty-alignment: 'AlignCenter';
+	color: black;
+}
+QSpinBox::down-button {
+  border-radius: 4px;
+  width: 20px;               
+  height: 13px;               
+  image: url(:/AntsSettingsVisual/decrease.png);
+}
+QSpinBox::up-button {
+  border-radius: 4px;
+  width: 20px;               
+  height: 13px;               
+  image: url(:/AntsSettingsVisual/increase.png);
+}
+QSpinBox::up-button:pressed, QSpinBox::down-button:pressed {	
+	border-radius: 4px;
+    background-color: #d5d5d5;       
+    width: 20px;              
+    height: 13px;               
+}
+QSpinBox::up-button { 
+	subcontrol-origin: border; 
+	subcontrol-position: right;
+}
+QSpinBox::down-button { 
+	subcontrol-origin: border; 
+	subcontrol-position: left; 
+}
+QSpinBox::editor {
+    alignment: AlignCenter; 
+}
+</string>
+              </property>
+              <property name="minimum">
+               <number>1</number>
+              </property>
+              <property name="maximum">
+               <number>10000</number>
+              </property>
+              <property name="value">
+               <number>1</number>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="0" colspan="2">
+             <widget class="Line" name="line">
+              <property name="styleSheet">
+               <string notr="true">background-color: #ffb669;</string>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="10" column="1">
+             <widget class="QSpinBox" name="MaxTransitionsNumberSB">
+              <property name="font">
+               <font>
+                <family>Arial Black</family>
+                <pointsize>-1</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QSpinBox {
+	border: 1px solid #d5d5d5; 
+    background-color: #f5f5f5;        
+	border-radius: 4px;        
+	selection-background-color: #00000000;
+	selection-color: #000088;
+	qproperty-alignment: 'AlignCenter';
+	color: black;
+}
+QSpinBox::down-button {
+  border-radius: 4px;
+  width: 20px;               
+  height: 13px;               
+  image: url(:/AntsSettingsVisual/decrease.png);
+}
+QSpinBox::up-button {
+  border-radius: 4px;
+  width: 20px;               
+  height: 13px;               
+  image: url(:/AntsSettingsVisual/increase.png);
+}
+QSpinBox::up-button:pressed, QSpinBox::down-button:pressed {	
+	border-radius: 4px;
+    background-color: #d5d5d5;       
+    width: 20px;              
+    height: 13px;               
+}
+QSpinBox::up-button { 
+	subcontrol-origin: border; 
+	subcontrol-position: right;
+}
+QSpinBox::down-button { 
+	subcontrol-origin: border; 
+	subcontrol-position: left; 
+}
+QSpinBox::editor {
+    alignment: AlignCenter; 
+}
+</string>
+              </property>
+              <property name="minimum">
+               <number>3</number>
+              </property>
+              <property name="value">
+               <number>5</number>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QDoubleSpinBox" name="lengthEffectSB">
+              <property name="minimumSize">
+               <size>
+                <width>50</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Arial Black</family>
+                <pointsize>-1</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QDoubleSpinBox {
+	border: 1px solid #d5d5d5; 
+    background-color: #f5f5f5;        
+	border-radius: 4px;        
+	selection-background-color: #00000000;
+	selection-color: #000088;
+	qproperty-alignment: 'AlignCenter';
+	color: black;
+}
+
+QDoubleSpinBox::down-button {
+  border-radius: 4px;
+  width: 20px;               
+  height: 13px;               
+  image: url(:/AntsSettingsVisual/decrease.png);
+}
+QDoubleSpinBox::up-button {
+  border-radius: 4px;
+  width: 20px;               
+  height: 13px;               
+  image: url(:/AntsSettingsVisual/increase.png);
+}
+
+QDoubleSpinBox::up-button:pressed, QDoubleSpinBox::down-button:pressed {	
+	border-radius: 4px;
+    background-color: #d5d5d5;       
+    width: 20px;              
+    height: 13px;               
+}
+
+QDoubleSpinBox::up-button { 
+	subcontrol-origin: border; 
+	subcontrol-position: right;
+}
+QDoubleSpinBox::down-button { 
+	subcontrol-origin: border; 
+	subcontrol-position: left; 
+}
+
+QDoubleSpinBox::editor {
+    alignment: AlignCenter; 
+}
+</string>
+              </property>
+              <property name="maximum">
+               <double>100.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>0.500000000000000</double>
+              </property>
+              <property name="value">
+               <double>1.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_7">
+              <property name="minimumSize">
+               <size>
+                <width>50</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>-1</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: black</string>
+              </property>
+              <property name="text">
+               <string>Вплив жадібности</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
               </property>
              </widget>
             </item>
@@ -784,38 +1092,6 @@ QDoubleSpinBox::editor {
               </property>
              </widget>
             </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="label_10">
-              <property name="minimumSize">
-               <size>
-                <width>50</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>200</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>-1</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">color: black</string>
-              </property>
-              <property name="text">
-               <string>Залишати феромонів</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-              </property>
-             </widget>
-            </item>
             <item row="1" column="1">
              <widget class="QDoubleSpinBox" name="pheromonesEffectSB">
               <property name="minimumSize">
@@ -890,40 +1166,8 @@ QDoubleSpinBox::editor {
               </property>
              </widget>
             </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="label_9">
-              <property name="minimumSize">
-               <size>
-                <width>50</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>200</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>-1</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">color: black</string>
-              </property>
-              <property name="text">
-               <string>Коефіцієнт випаровування</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="7" column="1">
-             <widget class="QSpinBox" name="ColoniesNumberSB">
+            <item row="4" column="1">
+             <widget class="QSpinBox" name="AntsNumberSB">
               <property name="font">
                <font>
                 <family>Arial Black</family>
@@ -976,15 +1220,79 @@ QSpinBox::editor {
                <number>1</number>
               </property>
               <property name="maximum">
-               <number>10000</number>
+               <number>1000000000</number>
+              </property>
+              <property name="singleStep">
+               <number>500</number>
               </property>
               <property name="value">
-               <number>1</number>
+               <number>1000</number>
               </property>
              </widget>
             </item>
-            <item row="7" column="0">
-             <widget class="QLabel" name="label_14">
+            <item row="14" column="1">
+             <widget class="QSpinBox" name="MutationIterationsNumberSB">
+              <property name="font">
+               <font>
+                <family>Arial Black</family>
+                <pointsize>-1</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QSpinBox {
+	border: 1px solid #d5d5d5; 
+    background-color: #f5f5f5;        
+	border-radius: 4px;        
+	selection-background-color: #00000000;
+	selection-color: #000088;
+	qproperty-alignment: 'AlignCenter';
+	color: black;
+}
+QSpinBox::down-button {
+  border-radius: 4px;
+  width: 20px;               
+  height: 13px;               
+  image: url(:/AntsSettingsVisual/decrease.png);
+}
+QSpinBox::up-button {
+  border-radius: 4px;
+  width: 20px;               
+  height: 13px;               
+  image: url(:/AntsSettingsVisual/increase.png);
+}
+QSpinBox::up-button:pressed, QSpinBox::down-button:pressed {	
+	border-radius: 4px;
+    background-color: #d5d5d5;       
+    width: 20px;              
+    height: 13px;               
+}
+QSpinBox::up-button { 
+	subcontrol-origin: border; 
+	subcontrol-position: right;
+}
+QSpinBox::down-button { 
+	subcontrol-origin: border; 
+	subcontrol-position: left; 
+}
+QSpinBox::editor {
+    alignment: AlignCenter; 
+}
+</string>
+              </property>
+              <property name="maximum">
+               <number>1000000000</number>
+              </property>
+              <property name="singleStep">
+               <number>50</number>
+              </property>
+              <property name="value">
+               <number>100</number>
+              </property>
+             </widget>
+            </item>
+            <item row="14" column="0">
+             <widget class="QLabel" name="label_18">
               <property name="minimumSize">
                <size>
                 <width>50</width>
@@ -1008,7 +1316,7 @@ QSpinBox::editor {
                <string notr="true">color: black</string>
               </property>
               <property name="text">
-               <string>Кількість колоній (потоків)</string>
+               <string>Ітерацій перед мутацією</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1171,8 +1479,8 @@ QWidget[highlighted=&quot;true&quot;] {
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>672</width>
-          <height>93</height>
+          <width>699</width>
+          <height>116</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout_3">
@@ -1203,6 +1511,23 @@ QWidget[highlighted=&quot;true&quot;] {
             <string notr="true">background-color: #ffc8ff;</string>
            </property>
            <layout class="QGridLayout" name="gridLayout_4">
+            <item row="1" column="1">
+             <widget class="QLabel" name="BestWayLabel">
+              <property name="font">
+               <font>
+                <family>Arial Black</family>
+                <pointsize>-1</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: black</string>
+              </property>
+              <property name="text">
+               <string>&gt;&gt;&gt;</string>
+              </property>
+             </widget>
+            </item>
             <item row="0" column="0">
              <widget class="QLabel" name="label">
               <property name="font">
@@ -1220,23 +1545,6 @@ QWidget[highlighted=&quot;true&quot;] {
               </property>
               <property name="alignment">
                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLabel" name="BestResultLabel">
-              <property name="font">
-               <font>
-                <family>Arial Black</family>
-                <pointsize>-1</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">color: black</string>
-              </property>
-              <property name="text">
-               <string>1.0</string>
               </property>
              </widget>
             </item>
@@ -1260,23 +1568,6 @@ QWidget[highlighted=&quot;true&quot;] {
               </property>
              </widget>
             </item>
-            <item row="1" column="1">
-             <widget class="QLabel" name="BestWayLabel">
-              <property name="font">
-               <font>
-                <family>Arial Black</family>
-                <pointsize>-1</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">color: black</string>
-              </property>
-              <property name="text">
-               <string>&gt;&gt;&gt;</string>
-              </property>
-             </widget>
-            </item>
             <item row="2" column="0">
              <widget class="QLabel" name="label_4">
               <property name="font">
@@ -1297,6 +1588,23 @@ QWidget[highlighted=&quot;true&quot;] {
               </property>
              </widget>
             </item>
+            <item row="0" column="1">
+             <widget class="QLabel" name="BestResultLabel">
+              <property name="font">
+               <font>
+                <family>Arial Black</family>
+                <pointsize>-1</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: black</string>
+              </property>
+              <property name="text">
+               <string>1.0</string>
+              </property>
+             </widget>
+            </item>
             <item row="2" column="1">
              <widget class="QLabel" name="CurrentIterationLabel">
               <property name="font">
@@ -1311,6 +1619,43 @@ QWidget[highlighted=&quot;true&quot;] {
               </property>
               <property name="text">
                <string>0</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_5">
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>-1</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: black</string>
+              </property>
+              <property name="text">
+               <string>Покоління:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLabel" name="CurrentGenerationLabel">
+              <property name="font">
+               <font>
+                <family>Arial Black</family>
+                <pointsize>-1</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: black</string>
+              </property>
+              <property name="text">
+               <string>-1488</string>
               </property>
              </widget>
             </item>
@@ -1470,8 +1815,8 @@ QWidget[highlighted=&quot;true&quot;] {
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>331</width>
-          <height>231</height>
+          <width>349</width>
+          <height>344</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout_2">
@@ -1528,6 +1873,38 @@ QPushButton:disabled {
 </string>
            </property>
            <layout class="QGridLayout" name="gridLayout_6">
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_15">
+              <property name="minimumSize">
+               <size>
+                <width>50</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Arial</family>
+                <pointsize>-1</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: black</string>
+              </property>
+              <property name="text">
+               <string>Готові набори:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
             <item row="1" column="1">
              <widget class="QPushButton" name="NewSetButton">
               <property name="styleSheet">
@@ -1636,35 +2013,71 @@ QPushButton:disabled {
               </property>
              </widget>
             </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_15">
-              <property name="minimumSize">
-               <size>
-                <width>50</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>200</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <family>Arial</family>
-                <pointsize>-1</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
+            <item row="2" column="0">
+             <widget class="QPushButton" name="GenerationZeroButton">
               <property name="styleSheet">
-               <string notr="true">color: black</string>
+               <string notr="true">QPushButton {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #ffffff, stop:1 #cfe1ff);
+    color: #1c2e40;
+    border: 1px solid #a2b9df;
+    border-radius: 10px;
+    padding: 8px 16px;
+    outline: none;
+}
+
+QPushButton:hover {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #f0f7ff, stop:1 #b6cfff);
+    border: 2px solid #819ac4;
+}
+
+QPushButton:pressed {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #d1e4ff, stop:1 #a2b9df);
+    border: 2px solid #5c7aa4;
+}
+
+QPushButton:disabled {
+    background: #e0eaf5;
+    border: 2px solid #c0cddc;
+    color: #95a5b8;
+}
+</string>
               </property>
               <property name="text">
-               <string>Готові набори:</string>
+               <string>До покоління Zero</string>
               </property>
-              <property name="alignment">
-               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QPushButton" name="NewGenerationZeroButton">
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #ffffff, stop:1 #cfe1ff);
+    color: #1c2e40;
+    border: 1px solid #a2b9df;
+    border-radius: 10px;
+    padding: 8px 16px;
+    outline: none;
+}
+
+QPushButton:hover {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #f0f7ff, stop:1 #b6cfff);
+    border: 2px solid #819ac4;
+}
+
+QPushButton:pressed {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #d1e4ff, stop:1 #a2b9df);
+    border: 2px solid #5c7aa4;
+}
+
+QPushButton:disabled {
+    background: #e0eaf5;
+    border: 2px solid #c0cddc;
+    color: #95a5b8;
+}
+</string>
+              </property>
+              <property name="text">
+               <string>Тепер це Zero</string>
               </property>
              </widget>
             </item>

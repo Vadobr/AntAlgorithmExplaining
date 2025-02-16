@@ -39,6 +39,8 @@ private:
 
 private slots:
 
+    void onAnythingChanged();
+
     void onTimeout();
 
     void onChoseSet(int index);
@@ -50,5 +52,25 @@ private slots:
 private:
 
     void LoadAASList();
+
+private slots:
+
+    void onAntsNumberSBChanged();
+    void onColoniesNumberSBChanged();
+    void onEvaporationCoefficientSBChanged();
+    void onlengthEffectSBChanged();
+    void onGenerationsPopulationSBChanged();
+    void onlengthToPheromonEffectSBChanged();
+    void onMaxTransitionsNumberSBChanged();
+    void onMutationIterationsNumberSBChanged();
+    void onScoutsRandomnessSBChanged();
+    void onScoutsNumberSBChanged();
+    void onpheromonesEffectSBChanged();
+
+private slots:
+
+    void onGenerationZero();
+
+    void onNewGenerationZero();
 
 };

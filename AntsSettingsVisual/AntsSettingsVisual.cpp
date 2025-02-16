@@ -41,9 +41,24 @@ void AntsSettingsVisual::Loading()
 		this,
 		&AntsSettingsVisual::onChoseSet);
 
+	connect(ui.AntsNumberSB, &QSpinBox::valueChanged, this, &AntsSettingsVisual::onAntsNumberSBChanged);
+	connect(ui.ColoniesNumberSB, &QSpinBox::valueChanged, this, &AntsSettingsVisual::onColoniesNumberSBChanged);
+	connect(ui.EvaporationCoefficientSB, &QDoubleSpinBox::valueChanged, this, &AntsSettingsVisual::onEvaporationCoefficientSBChanged);
+	connect(ui.lengthEffectSB, &QDoubleSpinBox::valueChanged, this, &AntsSettingsVisual::onlengthEffectSBChanged);
+	connect(ui.GenerationsPopulationSB, &QSpinBox::valueChanged, this, &AntsSettingsVisual::onGenerationsPopulationSBChanged);
+	connect(ui.lengthToPheromonEffectSB, &QDoubleSpinBox::valueChanged, this, &AntsSettingsVisual::onlengthToPheromonEffectSBChanged);
+	connect(ui.MaxTransitionsNumberSB, &QSpinBox::valueChanged, this, &AntsSettingsVisual::onMaxTransitionsNumberSBChanged);
+	connect(ui.MutationIterationsNumberSB, &QSpinBox::valueChanged, this, &AntsSettingsVisual::onMutationIterationsNumberSBChanged);
+	connect(ui.ScoutsRandomnessSB, &QDoubleSpinBox::valueChanged, this, &AntsSettingsVisual::onScoutsRandomnessSBChanged);
+	connect(ui.ScoutsNumberSB, &QSpinBox::valueChanged, this, &AntsSettingsVisual::onScoutsNumberSBChanged);
+	connect(ui.pheromonesEffectSB, &QDoubleSpinBox::valueChanged, this, &AntsSettingsVisual::onpheromonesEffectSBChanged);
+
+	connect(ui.NewGenerationZeroButton, &QPushButton::clicked, this, &AntsSettingsVisual::onNewGenerationZero);
+	connect(ui.GenerationZeroButton, &QPushButton::clicked, this, &AntsSettingsVisual::onGenerationZero);
+
 	timer = new QTimer(this);
 	connect(timer, &QTimer::timeout, this, &AntsSettingsVisual::onTimeout);
-	timer->start(200);
+	timer->start(2000);
 }
 
 void AntsSettingsVisual::AASViewToModel(AlgorythmSettings* dest)
@@ -56,18 +71,25 @@ void AntsSettingsVisual::AASViewToModel(AlgorythmSettings* dest)
 	dest->MaxTransitionsNumber		= ui.MaxTransitionsNumberSB->value();
 	dest->pheromonesEffect			= ui.pheromonesEffectSB->value();
 	dest->ScoutsNumber				= ui.ScoutsNumberSB->value();
+	dest->GenerationPopulation		= ui.GenerationsPopulationSB->value();
+	dest->iterationsNumberToMutate	= ui.MutationIterationsNumberSB->value();
+	dest->ScoutsRandomness			= ui.ScoutsRandomnessSB->value();
 }
 
 void AntsSettingsVisual::AASModelToView(AlgorythmSettings* source)
 {
-	ui.AntsNumberSB->setValue(				source->AntsNumber);
-	ui.ColoniesNumberSB->setValue(			source->ColoniesNumber);
-	ui.EvaporationCoefficientSB->setValue(	source->EvaporationCoefficient);
-	ui.lengthEffectSB->setValue(			source->lengthEffect);
-	ui.lengthToPheromonEffectSB->setValue(	source->lengthToPheromonEffect);
-	ui.MaxTransitionsNumberSB->setValue(	source->MaxTransitionsNumber);
-	ui.pheromonesEffectSB->setValue(		source->pheromonesEffect);
-	ui.ScoutsNumberSB->setValue(			source->ScoutsNumber);
+	ui.AntsNumberSB->setValue(					source->AntsNumber);
+	ui.ColoniesNumberSB->setValue(				source->ColoniesNumber);
+	ui.EvaporationCoefficientSB->setValue(		source->EvaporationCoefficient);
+	ui.lengthEffectSB->setValue(				source->lengthEffect);
+	ui.lengthToPheromonEffectSB->setValue(		source->lengthToPheromonEffect);
+	ui.MaxTransitionsNumberSB->setValue(		source->MaxTransitionsNumber);
+	ui.pheromonesEffectSB->setValue(			source->pheromonesEffect);
+	ui.ScoutsNumberSB->setValue(				source->ScoutsNumber);
+	ui.GenerationsPopulationSB->setValue(		source->GenerationPopulation);
+	ui.MutationIterationsNumberSB->setValue(	source->iterationsNumberToMutate);
+	ui.ScoutsRandomnessSB->setValue(			source->ScoutsRandomness);
+
 }
 
 void AntsSettingsVisual::AASToFile(AlgorythmSettings* source, QString filename)
@@ -89,6 +111,9 @@ void AntsSettingsVisual::AASToFile(AlgorythmSettings* source, QString filename)
 	out << source->MaxTransitionsNumber		<< "\n";
 	out << source->pheromonesEffect			<< "\n";
 	out << source->ScoutsNumber				<< "\n";
+	out << source->GenerationPopulation		<< "\n";
+	out << source->iterationsNumberToMutate << "\n";
+	out << source->ScoutsRandomness			<< "\n";
 
 	file.close();
 }
@@ -128,16 +153,50 @@ void AntsSettingsVisual::AASFromFile(AlgorythmSettings* source, QString filename
 	line = in.readLine();
 	source->ScoutsNumber				= line.toInt();
 	
+	line = in.readLine();
+	source->GenerationPopulation		= line.toDouble();
+
+	line = in.readLine();
+	source->iterationsNumberToMutate	= line.toInt();
+	
+	line = in.readLine();
+	source->ScoutsRandomness			= line.toDouble();
+
 	file.close();
+}
+
+void AntsSettingsVisual::onAnythingChanged()
+{
+	AASViewToModel(&currentSettings);
 }
 
 void AntsSettingsVisual::onTimeout()
 {
-	AASViewToModel(&currentSettings);
 
-	QString bestResult = QString::number(output->bestWayLength);
+	AASModelToView(&currentSettings);
 
-	std::vector<int> bestWay = output->bestWay;
+	QString bestResult;
+
+	std::vector<int> bestWay;
+
+	int lIteration;
+
+	int lGeneration;
+
+	if (output == nullptr)
+	{
+		bestResult = QString::number(-1);
+		bestWay = { 0, 1, 0 };
+		lIteration = -1;
+		lGeneration = -1488;
+	}
+	else
+	{
+		bestResult = QString::number(output->bestWayLength);
+		bestWay = output->bestWay;
+		lIteration = output->iteration;
+		lGeneration = currentSettings.generation;
+	}
 
 	QString bestResultStr;
 
@@ -154,9 +213,12 @@ void AntsSettingsVisual::onTimeout()
 	ui.BestResultLabel->setText(bestResult);
 	ui.BestWayLabel->setText(bestResultStr);
 
-	QString iteration = QString::number(lastIteration);
+	QString iteration = QString::number(lIteration);
 
 	ui.CurrentIterationLabel->setText(iteration);
+
+	iteration = QString::number(lGeneration);
+	ui.CurrentGenerationLabel->setText(iteration);
 
 }
 
@@ -259,4 +321,70 @@ void AntsSettingsVisual::LoadAASList()
 			ui.SettingsSetCB->addItem(file.section(".", 0, 0));
 		}
 	}
+}
+
+void AntsSettingsVisual::onAntsNumberSBChanged()
+{
+	currentSettings.AntsNumber = ui.AntsNumberSB->value();
+}
+
+void AntsSettingsVisual::onColoniesNumberSBChanged()
+{
+	currentSettings.ColoniesNumber = ui.ColoniesNumberSB->value();
+}
+
+void AntsSettingsVisual::onEvaporationCoefficientSBChanged()
+{
+	currentSettings.EvaporationCoefficient = ui.EvaporationCoefficientSB->value();
+}
+
+void AntsSettingsVisual::onlengthEffectSBChanged()
+{
+	currentSettings.lengthEffect = ui.lengthEffectSB->value();
+}
+
+void AntsSettingsVisual::onGenerationsPopulationSBChanged()
+{
+	currentSettings.GenerationPopulation = ui.GenerationsPopulationSB->value();
+}
+
+void AntsSettingsVisual::onlengthToPheromonEffectSBChanged()
+{
+	currentSettings.lengthToPheromonEffect = ui.lengthToPheromonEffectSB->value();
+}
+
+void AntsSettingsVisual::onMaxTransitionsNumberSBChanged()
+{
+	currentSettings.MaxTransitionsNumber = ui.MaxTransitionsNumberSB->value();
+}
+
+void AntsSettingsVisual::onMutationIterationsNumberSBChanged()
+{
+	currentSettings.iterationsNumberToMutate = ui.MutationIterationsNumberSB->value();
+}
+
+void AntsSettingsVisual::onScoutsRandomnessSBChanged()
+{
+	currentSettings.ScoutsRandomness = ui.ScoutsRandomnessSB->value();
+}
+
+void AntsSettingsVisual::onScoutsNumberSBChanged()
+{
+	currentSettings.ScoutsNumber = ui.ScoutsNumberSB->value();
+}
+
+void AntsSettingsVisual::onpheromonesEffectSBChanged()
+{
+	currentSettings.pheromonesEffect = ui.pheromonesEffectSB->value();
+}
+
+void AntsSettingsVisual::onGenerationZero()
+{
+	currentSettings = generationZeroSettings;
+}
+
+void AntsSettingsVisual::onNewGenerationZero()
+{
+	currentSettings.generation = 0;
+	generationZeroSettings = currentSettings;
 }
