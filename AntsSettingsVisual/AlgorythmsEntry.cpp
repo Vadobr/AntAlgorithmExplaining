@@ -3,7 +3,7 @@
 
 bool doContinue;
 
-std::atomic <InputData*> input;
+std::shared_ptr<InputData> input;
 
 std::atomic <OutputData*> output;
 

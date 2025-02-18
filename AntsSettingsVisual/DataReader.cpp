@@ -14,7 +14,7 @@
 // REDO |   |   |
 //      |   |   |   зіс шит, не змінюючи сигнатуру функції
 //      v   v   v
-void GetDataSingleTime(InputData* data) 
+void GetDataSingleTime(std::shared_ptr<InputData> data) 
 {    //REDO
     
     HANDLE hFile;
@@ -80,32 +80,19 @@ void GetDataEntry()
 
 //    std::this_thread::sleep_for(std::chrono::seconds(1));
 
-	InputData data1;
-	InputData data2;
 
-	InputData* front = &data1;
-	InputData* background = &data2;
-
-    GetDataSingleTime(&data1);
-    
-    data2 = data1;
-
-    front = &data1;
-    background = &data2;
-
-    input.store(front, std::memory_order_release);
+    std::shared_ptr<InputData> background;
 
 	while (doContinue)
 	{
+
+        background = std::make_shared<InputData>();
+
         GetDataSingleTime(background);
 
-        input.store(background, std::memory_order_release);
+        std::atomic_store(&input, background);
 
-        std::this_thread::sleep_for(std::chrono::seconds(1));
-
-        background = front;
-
-        front = input.load(std::memory_order_acquire);
+//        input.store(background, std::memory_order_release);
 
 	}
 }

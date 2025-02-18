@@ -21,7 +21,7 @@ bool skipCurrentGeneration;
 std::vector<OutputData> generationsOutputs;
 
 AlgorythmSettings currentSettingsCpy;
-InputData inputCpy;
+std::shared_ptr<InputData> inputCpy;
 
 double RandomNumberNormalDistributionAccountDistortion()
 {
@@ -48,10 +48,10 @@ void ProcessDataSingleTime(int index)
 
     data->iteration = 0;
 
-    data->pheromons.resize(inputCpy.size);
+    data->pheromons.resize(inputCpy->size);
     for (int i(0); i < data->pheromons.size(); i++)
     {
-        data->pheromons[i].resize(inputCpy.size);
+        data->pheromons[i].resize(inputCpy->size);
         for (int j(0); j < data->pheromons.size(); j++)
         {
             data->pheromons[i][j] = 0.5;
@@ -134,7 +134,12 @@ void ProcessDataSingleTime(int index)
 
     generationsSettings[index] = sd.currentSettingsCpy;
 
-    sd.inputCpy = inputCpy;
+     //= std::make_shared<InputData>(*input.load(std::memory_order_acquire));
+
+    auto inputCpy = std::atomic_load(&input); // Атомарно читаємо
+    if (inputCpy) {
+        sd.inputCpy = std::make_shared<InputData>(*inputCpy); // Копіюємо дані
+    }
 
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -148,11 +153,11 @@ void ProcessDataSingleTime(int index)
 
     for(int i(0); i < currentSettingsCpy.iterationsNumberToMutate; i++)
     {
-        SharedPrecalculationOrder1(data, inputCpy.size, sd);
-        IndividualCalculationOrder2(data, inputCpy.size, 0, sd);
-        SharedPostcalculationOrder3(data, inputCpy.size, sd);
-        IndividualCalculationOrder4(data, inputCpy.size, 0, sd);
-        SharedPostcalculationOrder5(data, inputCpy.size, sd);
+        SharedPrecalculationOrder1(data, inputCpy->size, sd);
+        IndividualCalculationOrder2(data, inputCpy->size, 0, sd);
+        SharedPostcalculationOrder3(data, inputCpy->size, sd);
+        IndividualCalculationOrder4(data, inputCpy->size, 0, sd);
+        SharedPostcalculationOrder5(data, inputCpy->size, sd);
     }
 
 }
@@ -178,7 +183,11 @@ void EvolutionEntry()
 
     while (doContinue)
     {
-        inputCpy = *input.load(std::memory_order_acquire);
+
+        auto inputCpyPtr = std::atomic_load(&input); // Атомарно читаємо
+        if (inputCpyPtr) {
+            inputCpy = std::make_shared<InputData>(*inputCpyPtr); // Копіюємо дані
+        }
 
         currentSettingsCpy = currentSettings;
 

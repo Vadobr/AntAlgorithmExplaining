@@ -21,7 +21,7 @@ void SharedPrecalculationOrder1(OutputData* data, const int& N, SharedData& shar
 		for (int j(0); j < N; j++)
 		{
 			sharedData.wishToGoIn[i][j] =
-				pow(sharedData.inputCpy.model[i][j], sharedData.currentSettingsCpy.lengthEffect)
+				pow(sharedData.inputCpy->model[i][j], sharedData.currentSettingsCpy.lengthEffect)
 				*
 				pow(data->pheromons[i][j], sharedData.currentSettingsCpy.pheromonesEffect);
 		}
@@ -89,7 +89,7 @@ void SharedPostcalculationOrder5(OutputData* data, const int& N, SharedData& sha
 
 		newBestWay.push_back(maxPheromonIndex);
 
-		newBestWayLength *= sharedData.inputCpy.model[newBestWay[i - 1]][newBestWay[i]];
+		newBestWayLength *= sharedData.inputCpy->model[newBestWay[i - 1]][newBestWay[i]];
 
 		if (maxPheromonIndex == 0)
 		{
@@ -100,7 +100,7 @@ void SharedPostcalculationOrder5(OutputData* data, const int& N, SharedData& sha
 	if (newBestWay[newBestWay.size() - 1] != 0)
 	{
 
-		newBestWayLength *= sharedData.inputCpy.model[newBestWay[newBestWay.size() - 1]][0];
+		newBestWayLength *= sharedData.inputCpy->model[newBestWay[newBestWay.size() - 1]][0];
 
 		newBestWay.push_back(0);
 
@@ -108,7 +108,7 @@ void SharedPostcalculationOrder5(OutputData* data, const int& N, SharedData& sha
 
 	for (int i(1); i < data->bestWay.size(); i++)
 	{
-		oldBestWayLength *= sharedData.inputCpy.model[data->bestWay[i - 1]][data->bestWay[i]];
+		oldBestWayLength *= sharedData.inputCpy->model[data->bestWay[i - 1]][data->bestWay[i]];
 	}
 
 	if (newBestWayLength / (newBestWay.size() - 1.) > oldBestWayLength / (data->bestWay.size() - 1.))
@@ -188,7 +188,7 @@ void IndividualCalculationOrder2(OutputData* data, const int& N, const int& numb
 				sharedData.antWay[i].push_back(chanceToGo.size() - 1);
 			}
 
-			sharedData.antWayLength[i] *= sharedData.inputCpy.model[sharedData.antWay[i][j - 1]][sharedData.antWay[i][j]];
+			sharedData.antWayLength[i] *= sharedData.inputCpy->model[sharedData.antWay[i][j - 1]][sharedData.antWay[i][j]];
 
 			if (sharedData.antWay[i][j] == 0)
 			{
@@ -202,7 +202,7 @@ void IndividualCalculationOrder2(OutputData* data, const int& N, const int& numb
 			sharedData.antWay[i].push_back(0);
 
 			sharedData.antWayLength[i] *= 
-				sharedData.inputCpy.
+				sharedData.inputCpy->
 					model	[sharedData.antWay[i][sharedData.antWay[i].size() - 2]]
 							[sharedData.antWay[i][sharedData.antWay[i].size() - 1]];
 
@@ -235,7 +235,7 @@ void IndividualCalculationOrder2(OutputData* data, const int& N, const int& numb
 				if (notVisited[k])
 				{
 					scoutWishToGoIn[k] =
-						pow(sharedData.inputCpy.model[sharedData.scoutAntWay[i][j - 1]][k], sharedData.currentSettingsCpy.ScoutsRandomness);
+						pow(sharedData.inputCpy->model[sharedData.scoutAntWay[i][j - 1]][k], sharedData.currentSettingsCpy.ScoutsRandomness);
 				}
 				else
 				{
@@ -276,7 +276,7 @@ void IndividualCalculationOrder2(OutputData* data, const int& N, const int& numb
 			}
 
 			sharedData.scoutAntWayLength[i] *= 
-				sharedData.inputCpy.model
+				sharedData.inputCpy->model
 					[sharedData.scoutAntWay[i][j - 1]]
 					[sharedData.scoutAntWay[i][j]];
 
@@ -292,7 +292,7 @@ void IndividualCalculationOrder2(OutputData* data, const int& N, const int& numb
 			sharedData.scoutAntWay[i].push_back(0);
 
 			sharedData.scoutAntWayLength[i] *= 
-				sharedData.inputCpy.model
+				sharedData.inputCpy->model
 					[sharedData.scoutAntWay[i][sharedData.scoutAntWay[i].size() - 2]]
 					[sharedData.scoutAntWay[i][sharedData.scoutAntWay[i].size() - 1]];
 
@@ -392,7 +392,7 @@ void ProcessDataEntry()
 	front = &data1;
 	background = &data2;
 
-	while (input.load() == nullptr);
+	while (input == nullptr);
 
 	output = front;
 
@@ -403,9 +403,16 @@ void ProcessDataEntry()
 	while (doContinue)
 	{
 
-		sharedData.inputCpy = *input.load(std::memory_order_acquire);
+//		sharedData.inputCpy = *input.load(std::memory_order_acquire);
 
-		N = sharedData.inputCpy.size;
+//		 = std::make_shared<InputData>(*input.load(std::memory_order_acquire));
+
+		auto inputCpy = std::atomic_load(&input); // Атомарно читаємо
+		if (inputCpy) {
+			sharedData.inputCpy = std::make_shared<InputData>(*inputCpy); // Копіюємо дані
+		}
+
+		N = sharedData.inputCpy->size;
 
 		sharedData.currentSettingsCpy = currentSettings;
 
@@ -462,8 +469,6 @@ void ProcessDataEntry()
 		}
 
 		SharedPostcalculationOrder5(background, N, sharedData);
-
-
 
 		output.store(background, std::memory_order_release);
 

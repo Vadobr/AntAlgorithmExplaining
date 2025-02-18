@@ -45,7 +45,7 @@ struct OutputData {
 
 };
 
-extern std::atomic <InputData*> input;
+extern std::shared_ptr<InputData> input;
 
 extern std::atomic <OutputData*> output;
 
@@ -75,7 +75,7 @@ struct SharedData
 	std::mt19937* gen;
 	std::uniform_real_distribution<double>* dis;
 
-	InputData inputCpy;
+	std::shared_ptr<InputData> inputCpy;
 	AlgorythmSettings currentSettingsCpy;
 
 	std::vector<std::vector<double>> wishToGoIn;

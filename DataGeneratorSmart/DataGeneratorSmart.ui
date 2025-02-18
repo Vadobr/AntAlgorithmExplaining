@@ -110,7 +110,7 @@
   </action>
   <action name="Clockrandomaction">
    <property name="text">
-    <string>On random every 5 sec</string>
+    <string>On random every 30 sec</string>
    </property>
   </action>
  </widget>

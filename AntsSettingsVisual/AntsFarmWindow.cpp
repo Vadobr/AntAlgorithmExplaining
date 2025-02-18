@@ -39,7 +39,12 @@ void AntsFarmWindow::paintEvent(QPaintEvent*)
 
 	OutputData outputCpy = *output;
 
-	InputData inputCpy = *input;
+	std::shared_ptr<InputData> inputCpy;
+
+	auto inputCpyPtr = std::atomic_load(&input); // Атомарно читаємо
+	if (inputCpyPtr) {
+		inputCpy = std::make_shared<InputData>(*inputCpyPtr); // Копіюємо дані
+	}
 
 	std::vector<QPoint> points;
 	std::vector<QPoint> pointsFrontward;
@@ -74,7 +79,7 @@ void AntsFarmWindow::paintEvent(QPaintEvent*)
 		halfAxis.setX((rectangle.right() - rectangle.left()) / 2);
 		halfAxis.setY((rectangle.bottom() - rectangle.top()) / 2);
 
-		int N = inputCpy.size;
+		int N = inputCpy->size;
 
 		points.resize(N);
 
@@ -109,7 +114,7 @@ void AntsFarmWindow::paintEvent(QPaintEvent*)
 		halfAxis.setX((rectangle.right() - rectangle.left()) / 2);
 		halfAxis.setY((rectangle.bottom() - rectangle.top()) / 2);
 
-		int N = inputCpy.size;
+		int N = inputCpy->size;
 
 		pointsFrontward.resize(N);
 
@@ -144,7 +149,7 @@ void AntsFarmWindow::paintEvent(QPaintEvent*)
 		halfAxis.setX((rectangle.right() - rectangle.left()) / 2);
 		halfAxis.setY((rectangle.bottom() - rectangle.top()) / 2);
 
-		int N = inputCpy.size;
+		int N = inputCpy->size;
 
 		pointsBackward.resize(N);
 

@@ -200,11 +200,11 @@ void DataGeneratorSmart::onRandomTimeoutPush()
 
     if (on)
     {
-        ui.Clockrandomaction->setText("On random every 5 sec");
+        ui.Clockrandomaction->setText("On random every 30 sec");
     }
     else
     {
-        ui.Clockrandomaction->setText("Off random every 5 sec");
+        ui.Clockrandomaction->setText("Off random every 30 sec");
     }
     
     on = !on;
@@ -214,7 +214,7 @@ void DataGeneratorSmart::onRandomTimeoutPush()
 
         randomusTimer = new QTimer(this);
         connect(randomusTimer, &QTimer::timeout, this, &DataGeneratorSmart::onRandomTimeout);
-        randomusTimer->start(5000);
+        randomusTimer->start(30000);
 
     }
     else
