@@ -41,7 +41,9 @@
     <addaction name="All1action"/>
     <addaction name="AllRandomaction"/>
     <addaction name="AddRandomaction"/>
+    <addaction name="separator"/>
     <addaction name="RandomSettingsaction"/>
+    <addaction name="Clockrandomaction"/>
    </widget>
    <widget class="QMenu" name="menuB">
     <property name="title">
@@ -104,6 +106,11 @@
   <action name="action">
    <property name="text">
     <string>Кастом</string>
+   </property>
+  </action>
+  <action name="Clockrandomaction">
+   <property name="text">
+    <string>On random every 5 sec</string>
    </property>
   </action>
  </widget>

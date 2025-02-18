@@ -13,7 +13,7 @@ DataGeneratorSmart::DataGeneratorSmart(QWidget* parent)
 
 	ui.gridLayout_2->addWidget(matrix);
 
-    QTimer* timer = new QTimer(this);
+    timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &DataGeneratorSmart::onTimeout);
     timer->start(500); 
 
@@ -32,6 +32,9 @@ DataGeneratorSmart::DataGeneratorSmart(QWidget* parent)
 
         int size = line.toInt();
 
+        if (size == 0)
+            size = 1;
+
         this->Resize(size);
 
         matrix->leftSideCellArray[0]->setText("USDT");
@@ -39,22 +42,25 @@ DataGeneratorSmart::DataGeneratorSmart(QWidget* parent)
 
         double temp;
 
-        for (int i(0); i < size; i++)
-        {
-            for (int j(0); j < size; j++)
+        if (size > 1) {
+            for (int i(0); i < size; i++)
             {
+                for (int j(0); j < size; j++)
+                {
 
-                in >> temp;
+                    in >> temp;
 
-                if (i == j)
-                    continue;
+                    if (i == j)
+                        continue;
 
-                matrix->gridCellArray[i][j]->setText(QString::number(temp));
+                    matrix->gridCellArray[i][j]->setText(QString::number(temp));
 
+                }
             }
         }
 
         file.close();
+
     }
 
     connect(ui.action, &QAction::triggered, this, &DataGeneratorSmart::onCustomResize);
@@ -69,6 +75,9 @@ DataGeneratorSmart::DataGeneratorSmart(QWidget* parent)
     connect(ui.AllRandomaction, &QAction::triggered, this, &DataGeneratorSmart::AllRandom);
     connect(ui.AddRandomaction, &QAction::triggered, this, &DataGeneratorSmart::AddRandom);
     connect(ui.RandomSettingsaction, &QAction::triggered, this, &DataGeneratorSmart::onRandomSettings);
+
+    connect(ui.Clockrandomaction, &QAction::triggered, this, &DataGeneratorSmart::onRandomTimeoutPush);
+    
 
     {
         QFile file("Random.config");
@@ -94,7 +103,8 @@ DataGeneratorSmart::DataGeneratorSmart(QWidget* parent)
 
         file.close();
     }
-    
+
+
 }
 
 DataGeneratorSmart::~DataGeneratorSmart()
@@ -173,6 +183,45 @@ void DataGeneratorSmart::onCustomResize()
     if (result > 0)
     {
         Resize(result);
+    }
+}
+
+void DataGeneratorSmart::onRandomTimeout()
+{
+
+    AllRandom();
+
+}
+
+void DataGeneratorSmart::onRandomTimeoutPush()
+{
+
+    static bool on = false;
+
+    if (on)
+    {
+        ui.Clockrandomaction->setText("On random every 5 sec");
+    }
+    else
+    {
+        ui.Clockrandomaction->setText("Off random every 5 sec");
+    }
+    
+    on = !on;
+
+    if (on)
+    {
+
+        randomusTimer = new QTimer(this);
+        connect(randomusTimer, &QTimer::timeout, this, &DataGeneratorSmart::onRandomTimeout);
+        randomusTimer->start(5000);
+
+    }
+    else
+    {
+
+        randomusTimer->stop();
+    
     }
 }
 
@@ -285,7 +334,7 @@ void DataGeneratorSmart::onTimeout()
     
         sprob--;
 
-    } while (hFile == INVALID_HANDLE_VALUE || sprob > 0);
+    } while (hFile == INVALID_HANDLE_VALUE && sprob > 0);
 
     if (hFile == INVALID_HANDLE_VALUE)
     {

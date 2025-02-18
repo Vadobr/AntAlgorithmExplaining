@@ -65,11 +65,14 @@ void SharedPostcalculationOrder5(OutputData* data, const int& N, SharedData& sha
 	double maxPheromon;
 	int maxPheromonIndex;
 
-	data->bestWayLength = 1;
 
-	data->bestWay.clear();
-	data->bestWay.reserve(sharedData.currentSettingsCpy.MaxTransitionsNumber + 1);
-	data->bestWay.push_back(0);
+	double oldBestWayLength = 1;
+	double newBestWayLength = 1;
+
+	std::vector<int> newBestWay;
+	
+	newBestWay.reserve(sharedData.currentSettingsCpy.MaxTransitionsNumber + 1);
+	newBestWay.push_back(0);
 
 	for (int i(1); i < sharedData.currentSettingsCpy.MaxTransitionsNumber; i++)
 	{
@@ -77,16 +80,16 @@ void SharedPostcalculationOrder5(OutputData* data, const int& N, SharedData& sha
 		maxPheromonIndex = 0;
 		for (int j(0); j < N; j++)
 		{
-			if (output->pheromons[data->bestWay[i - 1]][j] > maxPheromon)
+			if (output.load()->pheromons[newBestWay[i - 1]][j] > maxPheromon)
 			{
-				maxPheromon = output->pheromons[data->bestWay[i - 1]][j];
+				maxPheromon = output.load()->pheromons[newBestWay[i - 1]][j];
 				maxPheromonIndex = j;
 			}
 		}
 
-		data->bestWay.push_back(maxPheromonIndex);
+		newBestWay.push_back(maxPheromonIndex);
 
-		data->bestWayLength *= sharedData.inputCpy.model[data->bestWay[i - 1]][data->bestWay[i]];
+		newBestWayLength *= sharedData.inputCpy.model[newBestWay[i - 1]][newBestWay[i]];
 
 		if (maxPheromonIndex == 0)
 		{
@@ -94,69 +97,29 @@ void SharedPostcalculationOrder5(OutputData* data, const int& N, SharedData& sha
 		}
 	}
 
-	if (data->bestWay[data->bestWay.size() - 1] != 0)
+	if (newBestWay[newBestWay.size() - 1] != 0)
 	{
 
-		data->bestWayLength *= sharedData.inputCpy.model[data->bestWay[data->bestWay.size() - 1]][0];
+		newBestWayLength *= sharedData.inputCpy.model[newBestWay[newBestWay.size() - 1]][0];
 
-		data->bestWay.push_back(0);
+		newBestWay.push_back(0);
 
 	}
 
-
-	/*
-	double maxPheromon;
-	int maxPheromonIndex;
-
-	double bestWayLengthCandidate = 1;
-
-	std::vector<int> bestWayCandidate;
-
-	bestWayCandidate.reserve(currentSettingsCpy.MaxTransitionsNumber + 1);
-	bestWayCandidate.push_back(0);
-
-	for (int i(1); i < currentSettingsCpy.MaxTransitionsNumber; i++)
+	for (int i(1); i < data->bestWay.size(); i++)
 	{
-		maxPheromon = 0;
-		maxPheromonIndex = 0;
-		for (int j(0); j < N; j++)
-		{
-			if (output->pheromons[bestWayCandidate[i - 1]][j] > maxPheromon)
-			{
-				maxPheromon = output->pheromons[bestWayCandidate[i - 1]][j];
-				maxPheromonIndex = j;
-			}
-		}
-
-		bestWayCandidate.push_back(maxPheromonIndex);
-
-		bestWayLengthCandidate *= inputCpy.model[bestWayCandidate[i - 1]][bestWayCandidate[i]];
-
-		if (maxPheromonIndex == 0)
-		{
-			break;
-		}
+		oldBestWayLength *= sharedData.inputCpy.model[data->bestWay[i - 1]][data->bestWay[i]];
 	}
 
-	if (bestWayCandidate[bestWayCandidate.size() - 1] != 0)
+	if (newBestWayLength / (newBestWay.size() - 1.) > oldBestWayLength / (data->bestWay.size() - 1.))
 	{
-
-		bestWayLengthCandidate *= inputCpy.model[bestWayCandidate[bestWayCandidate.size() - 1]][0];
-
-		bestWayCandidate.push_back(0);
-
+		data->bestWayLength = newBestWayLength;
+		data->bestWay = newBestWay;
 	}
-
-	if (
-		bestWayLengthCandidate / (double)bestWayCandidate.size()
-		>
-		data->bestWayLength / (double)data->bestWay.size()
-		)
+	else
 	{
-		data->bestWay = bestWayCandidate;
-		data->bestWayLength = bestWayLengthCandidate;
+		data->bestWayLength = oldBestWayLength;
 	}
-*/
 
 }
 
@@ -377,6 +340,8 @@ void IndividualCalculationOrder4(OutputData* data, const int& N, const int& numb
 
 void ProcessDataEntry()
 {
+//	std::this_thread::sleep_for(std::chrono::seconds(1));
+
 	doMutate = false;
 
 	std::random_device rd;
@@ -395,15 +360,22 @@ void ProcessDataEntry()
 
 	{
 
-		int aVeryLot = 100;
+		int aVeryLot = 200;
 
 		data1.pheromons.resize(aVeryLot);
 		for (int i(0); i < data1.pheromons.size(); i++)
 		{
+
 			data1.pheromons[i].resize(aVeryLot);
 			for (int j(0); j < data1.pheromons.size(); j++)
 			{
-				data1.pheromons[i][j] = 0.5;
+				if (i == j)
+				{
+					data1.pheromons[i][j] = 0.;
+				}
+				else {
+					data1.pheromons[i][j] = 0.5;
+				}
 			}
 		}
 
@@ -420,37 +392,24 @@ void ProcessDataEntry()
 	front = &data1;
 	background = &data2;
 
-	while (input == nullptr);
+	while (input.load() == nullptr);
 
 	output = front;
 
 	int N, j;
 
+	InputData* local_input;
+
 	while (doContinue)
 	{
 
-		if (input == nullptr)
-		{
-			continue;
-		}
+		sharedData.inputCpy = *input.load(std::memory_order_acquire);
 
-		sharedData.inputCpy = *input;
-
-		N = input->size;
+		N = sharedData.inputCpy.size;
 
 		sharedData.currentSettingsCpy = currentSettings;
 
-		for (int i(0); i < N; i++)
-		{
-			for (j = 0; j < i; j++)
-			{
-				background->pheromons[i][j] = front->pheromons[i][j];
-			}
-			for (j = i + 1; j < N; j++)
-			{
-				background->pheromons[i][j] = front->pheromons[i][j];
-			}
-		}
+		background->pheromons = front->pheromons;
 
 		background->iteration = front->iteration;
 		
@@ -506,11 +465,11 @@ void ProcessDataEntry()
 
 
 
-		output = background;
+		output.store(background, std::memory_order_release);
 
 		background = front;
 
-		front = output;
+		front = output.load(std::memory_order_acquire);
 
 		if (doMutate)
 		{

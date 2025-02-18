@@ -28,6 +28,12 @@ private:
     AdvancedSmartMatrix* matrix;
     TransitionsMatrix model;
 
+    QTimer* timer;
+
+    QTimer* randomusTimer;
+
+private:
+
     void Resize(int N);
 
 private:
@@ -67,8 +73,10 @@ private slots:
 
     void onTimeout();
 
-public:
+private slots:
 
-    
+    void onRandomTimeout();
+
+    void onRandomTimeoutPush();
 
 };

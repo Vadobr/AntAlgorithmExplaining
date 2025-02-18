@@ -12,3 +12,5 @@
 #include <qfiledialog.h>
 #include <qfileinfo.h>
 #include <functional>
+#include <chrono>
+#include <atomic>

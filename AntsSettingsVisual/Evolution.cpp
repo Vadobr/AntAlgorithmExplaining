@@ -10,6 +10,9 @@ std::vector<AlgorythmSettings> generationsSettings;
 
 AlgorythmSettings generationZeroSettings;
 
+bool skipGenerationZero;
+bool skipCurrentGeneration;
+
 /// <summary>
 /// 0   - копія нульового покоління
 /// 1   - копія лицевої колонії
@@ -19,8 +22,6 @@ std::vector<OutputData> generationsOutputs;
 
 AlgorythmSettings currentSettingsCpy;
 InputData inputCpy;
-
-// Random number normal distribution account distortion
 
 double RandomNumberNormalDistributionAccountDistortion()
 {
@@ -129,9 +130,9 @@ void ProcessDataSingleTime(int index)
             sd.currentSettingsCpy.ScoutsRandomness = 0.;
         }
 
-        generationsSettings[index] = sd.currentSettingsCpy;
-
     }
+
+    generationsSettings[index] = sd.currentSettingsCpy;
 
     sd.inputCpy = inputCpy;
 
@@ -159,24 +160,27 @@ void ProcessDataSingleTime(int index)
 void EvolutionEntry()
 {
 
+//    std::this_thread::sleep_for(std::chrono::seconds(1));
+
+    skipGenerationZero = false;
+    skipCurrentGeneration = false;
+
+    OutputData outputCpy;
+
     while (input == nullptr);
     while (output == nullptr);
 
     std::vector<std::thread*> generation;
 
-    double bestWay = 0;
+    double bestWay;
 
-    int bestWayIndex = -1;
+    int bestWayIndex;
 
     while (doContinue)
     {
-        if (input == nullptr)
-        {
-            continue;
-        }
+        inputCpy = *input.load(std::memory_order_acquire);
 
         currentSettingsCpy = currentSettings;
-        inputCpy = *input;
 
         generationsSettings.resize(currentSettingsCpy.GenerationPopulation + 2);
         generationsOutputs.resize(currentSettingsCpy.GenerationPopulation + 2);
@@ -192,6 +196,8 @@ void EvolutionEntry()
             delete generation[i];
         }
 
+        while (doMutate);
+
         bestWay = 0;
 
         bestWayIndex = -1;
@@ -201,29 +207,43 @@ void EvolutionEntry()
             if (i == 1)
                 continue;
 
-            if (generationsOutputs[i].bestWayLength > bestWay)
+            if (skipGenerationZero && i == 0)
+            {
+                skipGenerationZero = false;
+                continue;
+            }
+
+            if (generationsOutputs[i].bestWayLength / generationsOutputs[i].bestWay.size() > bestWay)
             {
                 bestWayIndex = i;
-                bestWay = generationsOutputs[i].bestWayLength;
+                bestWay = generationsOutputs[i].bestWayLength / generationsOutputs[i].bestWay.size();
             }
         }
 
-        if (doMutate)
-            continue;
+        outputCpy = *output.load();
 
-        if (bestWay > generationsOutputs[1].bestWayLength)
+        if (bestWay > generationsOutputs[1].bestWayLength / generationsOutputs[1].bestWay.size())
         {
             outputCandidate = generationsOutputs[bestWayIndex];
             settingsCandidate = generationsSettings[bestWayIndex];
             doMutate = true;
         }
         else if (
-            generationsOutputs[1].bestWayLength > output->bestWayLength         &&
-            output->iteration > currentSettings.iterationsNumberToMutate * 3)
+            !skipCurrentGeneration 
+            &&
+            generationsOutputs[1].bestWayLength / generationsOutputs[1].bestWay.size() 
+                > outputCpy.bestWayLength / outputCpy.bestWay.size()
+     
+            &&
+            outputCpy.iteration > currentSettings.iterationsNumberToMutate * 3)
         {
             outputCandidate = generationsOutputs[1];
             settingsCandidate = generationsSettings[1];
             doMutate = true;
+        }
+        else
+        {
+            skipCurrentGeneration = false;
         }
 
     }

@@ -183,6 +183,8 @@ void AntsSettingsVisual::onTimeout()
 
 	int lGeneration;
 
+	OutputData outputCpy;
+
 	if (output == nullptr)
 	{
 		bestResult = QString::number(-1);
@@ -192,9 +194,11 @@ void AntsSettingsVisual::onTimeout()
 	}
 	else
 	{
-		bestResult = QString::number(output->bestWayLength);
-		bestWay = output->bestWay;
-		lIteration = output->iteration;
+		outputCpy = *output.load();
+
+		bestResult = QString::number(outputCpy.bestWayLength);
+		bestWay = outputCpy.bestWay;
+		lIteration = outputCpy.iteration;
 		lGeneration = currentSettings.generation;
 	}
 
@@ -381,10 +385,12 @@ void AntsSettingsVisual::onpheromonesEffectSBChanged()
 void AntsSettingsVisual::onGenerationZero()
 {
 	currentSettings = generationZeroSettings;
+	skipCurrentGeneration = true;
 }
 
 void AntsSettingsVisual::onNewGenerationZero()
 {
 	currentSettings.generation = 0;
 	generationZeroSettings = currentSettings;
+	skipGenerationZero = true;
 }

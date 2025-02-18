@@ -18,6 +18,12 @@ struct InputData {
 	int size;
 
 	std::vector<std::vector<double>> model;
+	
+	InputData();
+	InputData(const InputData& other);
+	InputData& operator=(const InputData& other);
+	InputData(InputData&& other) noexcept;
+	InputData& operator=(InputData&& other) noexcept;
 
 };
 
@@ -29,13 +35,19 @@ struct OutputData {
 
 	std::vector<std::vector<double>> pheromons;
 
-	int iteration = 0;
+	int iteration;
+
+	OutputData();
+	OutputData(const OutputData& other);
+	OutputData& operator=(const OutputData& other);
+	OutputData(OutputData&& other) noexcept;
+	OutputData& operator=(OutputData&& other) noexcept;
 
 };
 
-extern InputData* input;
+extern std::atomic <InputData*> input;
 
-extern OutputData* output;
+extern std::atomic <OutputData*> output;
 
 struct AlgorythmSettings
 {
@@ -88,3 +100,6 @@ extern AlgorythmSettings generationZeroSettings;
 extern OutputData outputCandidate;
 extern AlgorythmSettings settingsCandidate;
 extern bool doMutate;
+
+extern bool skipGenerationZero;
+extern bool skipCurrentGeneration;
