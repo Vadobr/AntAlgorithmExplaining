@@ -114,7 +114,7 @@ void TransitionsMatrix::Resize(const int& N)
 				newFunctionsMatrix[i][j] = "";
 			}
 
-			newVerticesName[i] = std::string("S") + std::to_string(i + 1);
+			newVerticesName[i] = std::string("S") + std::to_string(i);
 
 		}
 

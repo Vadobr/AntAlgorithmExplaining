@@ -5,9 +5,11 @@ VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AntsSettingsVisual", "AntsSettingsVisual\AntsSettingsVisual.vcxproj", "{6BA2E68D-72C4-49BF-8BEF-9ED86C2EA8F5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AlgorythmsOnly", "AlgorythmsOnly\AlgorythmsOnly.vcxproj", "{0E76976F-B697-4B1D-834F-8489443C81E3}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DataGeneratorSmart", "DataGeneratorSmart\DataGeneratorSmart.vcxproj", "{77876D98-129F-4B4B-BF84-7478AA6289BE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AntsVisualOnly", "AntsVisualOnly\AntsVisualOnly.vcxproj", "{40078DAF-678C-4540-9D77-D9AED0A45DDB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AntsAlgorythmsOnly", "AntsAlgorythmsOnly\AntsAlgorythmsOnly.vcxproj", "{80C74AFF-7035-4AC2-888B-DC4F1459CF1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +21,18 @@ Global
 		{6BA2E68D-72C4-49BF-8BEF-9ED86C2EA8F5}.Debug|x64.Build.0 = Debug|x64
 		{6BA2E68D-72C4-49BF-8BEF-9ED86C2EA8F5}.Release|x64.ActiveCfg = Release|x64
 		{6BA2E68D-72C4-49BF-8BEF-9ED86C2EA8F5}.Release|x64.Build.0 = Release|x64
-		{0E76976F-B697-4B1D-834F-8489443C81E3}.Debug|x64.ActiveCfg = Debug|x64
-		{0E76976F-B697-4B1D-834F-8489443C81E3}.Debug|x64.Build.0 = Debug|x64
-		{0E76976F-B697-4B1D-834F-8489443C81E3}.Release|x64.ActiveCfg = Release|x64
-		{0E76976F-B697-4B1D-834F-8489443C81E3}.Release|x64.Build.0 = Release|x64
 		{77876D98-129F-4B4B-BF84-7478AA6289BE}.Debug|x64.ActiveCfg = Debug|x64
 		{77876D98-129F-4B4B-BF84-7478AA6289BE}.Debug|x64.Build.0 = Debug|x64
 		{77876D98-129F-4B4B-BF84-7478AA6289BE}.Release|x64.ActiveCfg = Release|x64
 		{77876D98-129F-4B4B-BF84-7478AA6289BE}.Release|x64.Build.0 = Release|x64
+		{40078DAF-678C-4540-9D77-D9AED0A45DDB}.Debug|x64.ActiveCfg = Debug|x64
+		{40078DAF-678C-4540-9D77-D9AED0A45DDB}.Debug|x64.Build.0 = Debug|x64
+		{40078DAF-678C-4540-9D77-D9AED0A45DDB}.Release|x64.ActiveCfg = Release|x64
+		{40078DAF-678C-4540-9D77-D9AED0A45DDB}.Release|x64.Build.0 = Release|x64
+		{80C74AFF-7035-4AC2-888B-DC4F1459CF1B}.Debug|x64.ActiveCfg = Debug|x64
+		{80C74AFF-7035-4AC2-888B-DC4F1459CF1B}.Debug|x64.Build.0 = Debug|x64
+		{80C74AFF-7035-4AC2-888B-DC4F1459CF1B}.Release|x64.ActiveCfg = Release|x64
+		{80C74AFF-7035-4AC2-888B-DC4F1459CF1B}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

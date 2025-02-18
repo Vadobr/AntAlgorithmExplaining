@@ -22,7 +22,7 @@ void AntsFarmWindow::paintEvent(QPaintEvent*)
 {
 	QPainter painter(this);
 
-	if (input == nullptr || output == nullptr)
+	if (!input || output == nullptr)
 	{
 		// Чорний квадрат
 		{

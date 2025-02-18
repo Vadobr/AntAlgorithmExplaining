@@ -7,11 +7,14 @@
 #include "TransitionsMatrix.h"
 #include "RandomSettingsDialoh.h"
 #include <qtimer.h>
-#include <Windows.h>
 #include "ChangeSizeDilog.h"
 #include <random>
 #include "FileThatInsteadAPI.h"
 #include <qfile.h>
+#include <fstream>
+#include <string>
+#include <thread>
+#include <chrono>
 
 class DataGeneratorSmart : public QMainWindow
 {

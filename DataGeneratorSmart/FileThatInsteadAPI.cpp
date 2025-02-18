@@ -1,4 +1,4 @@
 #include "PCH.h"
 #include "FileThatInsteadAPI.h"
 
-const QString fileInsteadAPI = "C:\\DELETEME\\WafaloFeefalo.xtx";
+const std::string fileInsteadAPI = "C:\\DELETEME\\WafaloFeefalo.xtx";

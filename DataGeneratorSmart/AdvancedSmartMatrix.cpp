@@ -126,8 +126,8 @@ void AdvancedSmartMatrix::Resize(const int& N)
             this->SetLeftSideWidget(leftCell, i);
             this->SetTopSideWidget(topCell, i);
 
-            leftCell->setText(QString("S") + QString(std::to_string(i + 1).c_str()));
-            topCell->setText(QString("S") + QString(std::to_string(i + 1).c_str()));
+            leftCell->setText(QString("S") + QString(std::to_string(i).c_str()));
+            topCell->setText(QString("S") + QString(std::to_string(i).c_str()));
 
             leftSideCellArray.push_back(leftCell);
             topSideCellArray.push_back(topCell);

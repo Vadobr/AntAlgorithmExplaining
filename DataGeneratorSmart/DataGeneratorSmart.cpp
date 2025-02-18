@@ -18,7 +18,7 @@ DataGeneratorSmart::DataGeneratorSmart(QWidget* parent)
     timer->start(500); 
 
     {
-        QFile file(fileInsteadAPI);
+        QFile file(fileInsteadAPI.c_str());
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
             int a = 5;
 
@@ -324,41 +324,24 @@ void DataGeneratorSmart::onTimeout()
 {
     ViewToModel();
 
-    HANDLE hFile;
+    int attempts = 200;
 
-    int sprob = 200;
+    while (attempts-- > 0) {
+        std::ofstream file(fileInsteadAPI, std::ios::out | std::ios::trunc);
+        if (file.is_open()) {
+            file << model.Size() << "\n";
 
-    do {
+            for (int i = 0; i < model.Size(); i++) {
+                for (int j = 0; j < model.Size(); j++) {
+                    file << model.GeteIntensitie(i, j) << " ";
+                }
+                file << "\n";
+            }
 
-        hFile = CreateFile(fileInsteadAPI.toStdWString().c_str(), GENERIC_WRITE, FILE_SHARE_READ, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-    
-        sprob--;
-
-    } while (hFile == INVALID_HANDLE_VALUE && sprob > 0);
-
-    if (hFile == INVALID_HANDLE_VALUE)
-    {
-        return;
-    }
-
-    {
-        DWORD written;
-        std::string text = std::to_string(model.Size()) + std::string("\n");
-        WriteFile(hFile, text.c_str(), text.size(), &written, NULL);
-    }
-
-    for (int i(0); i < model.Size(); i++)
-    {
-        for (int j(0); j < model.Size(); j++)
-        {
-            DWORD written;
-            std::string text = std::to_string(model.GeteIntensitie(i, j)) + std::string(" ");
-            WriteFile(hFile, text.c_str(), text.size(), &written, NULL);
+            file.close();
+            return; // Успішний запис
         }
-        DWORD writtenl;
-        std::string text = "\n";
-        WriteFile(hFile, text.c_str(), text.size(), &writtenl, NULL);
-    }
 
-    CloseHandle(hFile);
+        std::this_thread::sleep_for(std::chrono::milliseconds(10)); // Затримка перед повторною спробою
+    }
 }

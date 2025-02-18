@@ -1,4 +1,4 @@
 #pragma once
 #include "PCHNames.h"
 
-extern const QString fileInsteadAPI;
+extern const std::string fileInsteadAPI;

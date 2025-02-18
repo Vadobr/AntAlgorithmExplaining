@@ -340,7 +340,7 @@ void IndividualCalculationOrder4(OutputData* data, const int& N, const int& numb
 
 void ProcessDataEntry()
 {
-//	std::this_thread::sleep_for(std::chrono::seconds(1));
+	std::this_thread::sleep_for(std::chrono::seconds(1));
 
 	doMutate = false;
 
@@ -392,7 +392,10 @@ void ProcessDataEntry()
 	front = &data1;
 	background = &data2;
 
-	while (input == nullptr);
+	while (input == nullptr)
+	{
+		continue;
+	}
 
 	output = front;
 

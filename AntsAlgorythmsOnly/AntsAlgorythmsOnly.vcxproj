@@ -22,8 +22,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{0e76976f-b697-4b1d-834f-8489443c81e3}</ProjectGuid>
-    <RootNamespace>AlgorythmsOnly</RootNamespace>
+    <ProjectGuid>{80c74aff-7035-4ac2-888b-dc4f1459cf1b}</ProjectGuid>
+    <RootNamespace>AntsAlgorythmsOnly</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

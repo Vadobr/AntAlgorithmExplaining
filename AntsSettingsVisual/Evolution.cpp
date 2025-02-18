@@ -165,14 +165,14 @@ void ProcessDataSingleTime(int index)
 void EvolutionEntry()
 {
 
-//    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::this_thread::sleep_for(std::chrono::seconds(2));
 
     skipGenerationZero = false;
     skipCurrentGeneration = false;
 
     OutputData outputCpy;
 
-    while (input == nullptr);
+    while (!input);
     while (output == nullptr);
 
     std::vector<std::thread*> generation;
