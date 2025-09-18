@@ -111,7 +111,7 @@ void SharedPostcalculationOrder5(OutputData* data, const int& N, SharedData& sha
 		oldBestWayLength *= sharedData.inputCpy->model[data->bestWay[i - 1]][data->bestWay[i]];
 	}
 
-	if (newBestWayLength / (newBestWay.size() - 1.) > oldBestWayLength / (data->bestWay.size() - 1.))
+	if (newBestWayLength > oldBestWayLength)
 	{
 		data->bestWayLength = newBestWayLength;
 		data->bestWay = newBestWay;

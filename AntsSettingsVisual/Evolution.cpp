@@ -222,16 +222,16 @@ void EvolutionEntry()
                 continue;
             }
 
-            if (generationsOutputs[i].bestWayLength / generationsOutputs[i].bestWay.size() > bestWay)
+            if (generationsOutputs[i].bestWayLength > bestWay)
             {
                 bestWayIndex = i;
-                bestWay = generationsOutputs[i].bestWayLength / generationsOutputs[i].bestWay.size();
+                bestWay = generationsOutputs[i].bestWayLength;
             }
         }
 
         outputCpy = *output.load();
 
-        if (bestWay > generationsOutputs[1].bestWayLength / generationsOutputs[1].bestWay.size())
+        if (bestWay > generationsOutputs[1].bestWayLength)
         {
             outputCandidate = generationsOutputs[bestWayIndex];
             settingsCandidate = generationsSettings[bestWayIndex];
@@ -240,8 +240,8 @@ void EvolutionEntry()
         else if (
             !skipCurrentGeneration 
             &&
-            generationsOutputs[1].bestWayLength / generationsOutputs[1].bestWay.size() 
-                > outputCpy.bestWayLength / outputCpy.bestWay.size()
+            generationsOutputs[1].bestWayLength
+                > outputCpy.bestWayLength
      
             &&
             outputCpy.iteration > currentSettings.iterationsNumberToMutate * 3)
